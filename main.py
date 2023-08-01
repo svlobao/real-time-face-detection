@@ -32,7 +32,7 @@ def accessMacbookCamera(mode):
         ret, frame = cap.read()
 
         if mode == "haar":
-            HaarCascades_FaceDetection(frame=frame, haar_mode=4)
+            HaarCascades_FaceDetection(frame=frame, haar_mode=3)
 
         if mode == "mtcnn":
             frame = Mtcnn_FaceDetection(frame=frame)

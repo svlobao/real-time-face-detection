@@ -32,7 +32,7 @@ def HaarCascades_FaceDetection(frame, haar_mode):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(
-        gray, scaleFactor=1.3, minNeighbors=10, minSize=(30, 30)
+        gray, scaleFactor=1.3, minNeighbors=7, minSize=(50, 50)
     )
 
     for x, y, w, h in faces:

@@ -1,7 +1,8 @@
 import cv2
 from sys import platform
 
-from scripts.haar_cascades import HaarCascadesFaceDetection
+from scripts.haar_cascades import HaarCascades_FaceDetection
+from scripts.mtcnn import Mtcnn_FaceDetection
 
 
 def checkOS():
@@ -9,7 +10,7 @@ def checkOS():
         return "linux"
 
     elif platform == "darwin":
-        return accessMacbookCamera()
+        return accessMacbookCamera(mode="haar")
 
     elif platform == "win32":
         return "windows"
@@ -24,13 +25,17 @@ def osNotSupported():
     )
 
 
-def accessMacbookCamera():
+def accessMacbookCamera(mode):
     cap = cv2.VideoCapture(0)
 
     while True:
         ret, frame = cap.read()
 
-        HaarCascadesFaceDetection(frame=frame)
+        if mode == "haar":
+            HaarCascades_FaceDetection(frame=frame)
+
+        if mode == "mtcnn":
+            frame = Mtcnn_FaceDetection(frame=frame)
 
         cv2.imshow("Video", frame)
 
